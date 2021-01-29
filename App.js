@@ -1,8 +1,9 @@
 import React from 'react';
+import {Image } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import Insta from './Screens/in';
-import Facebook from './Screens/fb';
+import WriteStory from './Screens/WriteStory';
+import ReadStory from './Screens/ReadStory';
 
 export default class App extends React.Component{
   render() {
@@ -12,8 +13,28 @@ export default class App extends React.Component{
   }
 }
 const TabNavigator = createBottomTabNavigator({
-  Insta: {screen:Insta},
-  Facebook: {screen: Facebook}
-})
+  WriteStory: {screen:WriteStory},
+  ReadStory: {screen: ReadStory} 
+},
+{defaultNavigationOptions:({navigation})=>({
+    tabBarIcon:() =>{
+      const routeName = navigation.state.routeName
+      if(routeName === 'WriteStory'){
+        return(
+          <Image
+          source = {require('./assets/write.png')}
+          style = {{width:40, height: 40}} />
+        )
+      }
+      else if(routeName === 'ReadStory'){
+        return(
+          <Image
+            source = {require('./assets/read.png')}
+            style = {{width:40, height: 40}}
+          /> 
+        )
+      }
+    }
+})})
 
 const AppContainer  = createAppContainer(TabNavigator);
