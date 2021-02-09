@@ -15,7 +15,7 @@ export default class WriteStoryScr extends React.Component{
     }
 
     submitStory = ()=>{
-      db.collection("stories").where("ST0001" ).add({
+      db.collection("stories").add({
           title: this.state.title,
           author: this.state.author,
           story: this.state.story
